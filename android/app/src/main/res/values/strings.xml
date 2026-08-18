@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CalculatriceAPK</string>
+    <string name="title_activity_main">CalculatriceAPK</string>
+    <string name="package_name">com.aimable.calculatrice</string>
+    <string name="custom_url_scheme">com.aimable.calculatrice</string>
+</resources>

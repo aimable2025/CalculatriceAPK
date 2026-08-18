@@ -2,13 +2,8 @@
   "name": "calculatriceapk",
   "version": "1.0.0",
   "description": "Application Calculatrice Android avec Capacitor",
-  "main": "index.js",
-  "scripts": {
-    "build": "echo Build terminé"
-  },
-  "author": "Aimable",
-  "license": "MIT",
   "dependencies": {
+    "@capacitor/android": "^7.6.8",
     "@capacitor/core": "^7.4.0"
   },
   "devDependencies": {

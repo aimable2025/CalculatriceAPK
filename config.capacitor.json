@@ -1,6 +1,6 @@
 {
   "appId": "com.aimable.calculatriceapk",
   "appName": "CalculatriceAPK",
-  "webDir": "www",
+  "webDir": ".",
   "bundledWebRuntime": false
 }

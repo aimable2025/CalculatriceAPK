@@ -1,5 +1,8 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# Workflow Node.js adapté pour CalculatriceAPK
+# Installation conditionnelle des dépendances selon la présence d'un lockfile
+# - npm ci si package-lock.json présent
+# - yarn install --frozen-lockfile si yarn.lock présent
+# - fallback: npm install si aucun lockfile (évite l'erreur "Dependencies lock file is not found")
 
 name: Node.js CI
 
@@ -11,21 +14,38 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        # Note: on setup-node, setting cache requires a lockfile. We omit it here
+        # to avoid failing the workflow when aucun lockfile n'est commité.
+
+    - name: Install dependencies
+      run: |
+        set -e
+        if [ -f package-lock.json ]; then
+          echo "package-lock.json détecté — installation avec npm ci"
+          npm ci
+        elif [ -f yarn.lock ]; then
+          echo "yarn.lock détecté — installation avec yarn --frozen-lockfile"
+          yarn install --frozen-lockfile
+        else
+          echo "Aucun lockfile détecté — fallback: npm install (non reproductible)"
+          npm install
+        fi
+
+    - name: Build
+      run: npm run build --if-present
+
+    - name: Test
+      run: npm test

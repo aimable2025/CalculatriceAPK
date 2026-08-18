@@ -15,21 +15,14 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
-
-      - name: Installer Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Générer Gradle Wrapper
-        run: |
-          gradle wrapper
+          java-version: '17'
 
       - name: Compiler APK
-        run: |
-          ./gradlew assembleDebug
+        working-directory: android
+        run: ./gradlew assembleDebug
 
       - name: Publier APK
         uses: actions/upload-artifact@v4
         with:
           name: CalculatriceAPK
-          path: app/build/outputs/apk/debug/*.apk
+          path: android/app/build/outputs/apk/debug/*.apk

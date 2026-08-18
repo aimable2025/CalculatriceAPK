@@ -1,0 +1,54 @@
+name: Build CalculatriceAPK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Récupérer le projet
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Installer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # 3. Installer les dépendances
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Synchroniser Capacitor avec Android
+      - name: Capacitor Sync
+        run: npx cap sync android
+
+      # 5. Installer Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+      # 6. Donner les permissions à Gradle
+      - name: Grant execute permission
+        run: chmod +x android/gradlew
+
+      # 7. Construire l'APK Debug
+      - name: Build APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      # 8. Publier l'APK comme artefact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: CalculatriceAPK
+          path: android/app/build/outputs/apk/debug/app-debug.apk

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculatrice</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <!-- Logo et nom de l'application -->
+        <div class="app-header">
+            <img 
+                src="images/logo.png" 
+                alt="Logo Calculatrice"
+                class="app-logo"
+            >
+
+            <h1>Calculatrice</h1>
+        </div>
+
+        <!-- Écran -->
+        <input 
+            type="text" 
+            id="display" 
+            readonly
+            aria-label="Écran de calcul"
+        >
+
+        <!-- Touches -->
+        <div class="buttons">
+
+            <!-- Ligne 1 -->
+            <button onclick="clearDisplay()" class="effacer">C</button>
+            <button onclick="deleteLast()" class="effacer">DEL</button>
+            <button onclick="appendParenthesis()">()</button>
+            <button onclick="appendValue('%')" class="operateur">%</button>
+
+            <!-- Ligne 2 -->
+            <button onclick="squareRoot()" class="scientifique">√</button>
+            <button onclick="square()" class="scientifique">x²</button>
+            <button onclick="inverse()" class="scientifique">1/x</button>
+            <button onclick="toggleSign()" class="scientifique">+/-</button>
+
+            <!-- Ligne 3 -->
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('/')" class="operateur">÷</button>
+
+            <!-- Ligne 4 -->
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('*')" class="operateur">×</button>
+
+            <!-- Ligne 5 -->
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('-')" class="operateur">−</button>
+
+            <!-- Ligne 6 -->
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="calculate()" class="resultat">=</button>
+            <button onclick="appendValue('+')" class="operateur">+</button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

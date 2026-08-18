@@ -1,0 +1,240 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+    background-color: #f5f7fa;
+}
+
+/* ==============================
+   CALCULATRICE
+================================ */
+
+.calculator {
+    width: 100%;
+    max-width: 400px;
+    padding: 18px;
+    border-radius: 22px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==============================
+   EN-TÊTE / LOGO
+================================ */
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.app-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2634ff;
+}
+
+
+/* ==============================
+   ÉCRAN
+================================ */
+
+#display {
+    width: 100%;
+    height: 80px;
+    padding: 0 12px;
+
+    font-size: 32px;
+    font-weight: 500;
+
+    text-align: right;
+
+    color: #2634ff;
+
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+
+    background-color: #fafafa;
+
+    outline: none;
+
+    margin-bottom: 12px;
+
+    overflow-x: auto;
+}
+
+
+/* ==============================
+   TOUCHES
+================================ */
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+button {
+    height: 65px;
+
+    font-size: 22px;
+    font-weight: 500;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #f4f4ff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s ease,
+        filter 0.1s ease;
+    
+    -webkit-tap-highlight-color: transparent;
+    
+    touch-action: manipulation;
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+
+/* ==============================
+   OPÉRATEURS
+================================ */
+
+.operateur {
+    color: #5a16b6;
+    font-weight: bold;
+    background-color: #ece7ff;
+}
+
+
+/* ==============================
+   EFFACEMENT
+================================ */
+
+.effacer {
+    color: #ffffff;
+    background-color: #e53935;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   RÉSULTAT
+================================ */
+
+.resultat {
+    color: #ffffff;
+    background-color: #2634ff;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   SCIENTIFIQUE
+================================ */
+
+.scientifique {
+    color: #00695c;
+    font-weight: bold;
+    background-color: #e0f2f1;
+}
+
+
+/* ==============================
+   SURVOL PC
+================================ */
+
+button:hover {
+    filter: brightness(0.96);
+}
+
+
+/* ==============================
+   PETITS ÉCRANS
+================================ */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .calculator {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .app-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .app-header h1 {
+        font-size: 20px;
+    }
+
+    #display {
+        height: 70px;
+        font-size: 28px;
+    }
+
+    button {
+        height: 58px;
+        font-size: 20px;
+    }
+
+    .resultat {
+        font-size: 26px;
+    }
+}
+
+
+/* ==============================
+   TRÈS PETITS ÉCRANS
+================================ */
+
+@media (max-width: 360px) {
+
+    .calculator {
+        padding: 10px;
+    }
+
+    .buttons {
+        gap: 6px;
+    }
+
+    button {
+        height: 54px;
+        font-size: 18px;
+    }
+
+    #display {
+        height: 65px;
+        font-size: 25px;
+    }
+}

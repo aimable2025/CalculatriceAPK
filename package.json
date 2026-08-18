@@ -1,11 +1,11 @@
 {
-  "name": "calculatriceapk",
+  "name": "android-calculator-app",
   "version": "1.0.0",
-  "description": "Application de calculatrice Android",
+  "description": "Android Calculator Application built with HTML, CSS, JavaScript and Capacitor",
   "main": "index.html",
   "scripts": {
-    "build": "npx cap sync",
     "sync": "npx cap sync",
+    "build": "npx cap sync",
     "android": "npx cap open android"
   },
   "dependencies": {
@@ -16,9 +16,10 @@
     "@capacitor/cli": "^7.4.0"
   },
   "keywords": [
-    "calculatrice",
+    "calculator",
     "android",
-    "capacitor"
+    "capacitor",
+    "javascript"
   ],
   "author": "Aimable",
   "license": "MIT"

@@ -50,43 +50,6 @@ body {
         0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
-
-/* ============================================================
-   EN-TÊTE
-============================================================ */
-
-.app-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-bottom: 14px;
-}
-
-.app-logo {
-    width: 42px;
-    height: 42px;
-
-    object-fit: contain;
-
-    border-radius: 10px;
-}
-
-.app-header h1 {
-    margin: 0;
-
-    font-size: 23px;
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    color: #324124;
-}
-
-
 /* ============================================================
    ÉCRAN PRINCIPAL
 ============================================================ */

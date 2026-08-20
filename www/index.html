@@ -1,81 +1,561 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Calculatrice</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
+
 
 <body>
 
+
+    <!-- ======================================================
+         CALCULATRICE
+    ======================================================= -->
+
     <div class="calculator">
 
-        <!-- Logo et nom de l'application -->
+
+        <!-- ==================================================
+             EN-TÊTE
+        =================================================== -->
+
         <div class="app-header">
-            <img 
-                src="images/logo.png" 
+
+            <img
+                src="images/logo.png"
                 alt="Logo Calculatrice"
                 class="app-logo"
             >
 
-            <h1>Calculatrice</h1>
+            <h1>CALCULATRICE</h1>
+
         </div>
 
-        <!-- Écran -->
-        <input 
-            type="text" 
-            id="display" 
+
+
+        <!-- ==================================================
+             ÉCRAN PRINCIPAL
+        =================================================== -->
+
+        <input
+            type="text"
+            id="display"
             readonly
             aria-label="Écran de calcul"
         >
 
-        <!-- Touches -->
+
+
+        <!-- ==================================================
+             TOUCHES DE LA CALCULATRICE
+        =================================================== -->
+
         <div class="buttons">
 
-            <!-- Ligne 1 -->
-            <button onclick="clearDisplay()" class="effacer">C</button>
-            <button onclick="deleteLast()" class="effacer">DEL</button>
-            <button onclick="appendParenthesis()">()</button>
-            <button onclick="appendValue('%')" class="operateur">%</button>
 
-            <!-- Ligne 2 -->
-            <button onclick="squareRoot()" class="scientifique">√</button>
-            <button onclick="square()" class="scientifique">x²</button>
-            <button onclick="inverse()" class="scientifique">1/x</button>
-            <button onclick="toggleSign()" class="scientifique">+/-</button>
+            <!-- ==========================
+                 LIGNE 1
+            =========================== -->
 
-            <!-- Ligne 3 -->
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('/')" class="operateur">÷</button>
+            <button
+                onclick="clearDisplay()"
+                class="effacer"
+            >
+                C
+            </button>
 
-            <!-- Ligne 4 -->
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('*')" class="operateur">×</button>
 
-            <!-- Ligne 5 -->
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('-')" class="operateur">−</button>
+            <button
+                onclick="showFxMenu()"
+                class="scientifique"
+            >
+                fx
+            </button>
 
-            <!-- Ligne 6 -->
-            <button onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button onclick="calculate()" class="resultat">=</button>
-            <button onclick="appendValue('+')" class="operateur">+</button>
+
+            <button
+                onclick="appendParenthesis()"
+            >
+                ()
+            </button>
+
+
+            <button
+                onclick="deleteLast()"
+            >
+                ❌
+            </button>
+
+
+
+            <!-- ==========================
+                 LIGNE 2
+            =========================== -->
+
+            <button
+                onclick="appendValue('√')"
+                class="scientifique"
+            >
+                √
+            </button>
+
+
+            <button
+                onclick="appendValue('%')"
+                class="operateur"
+            >
+                %
+            </button>
+
+
+            <button
+                onclick="appendValue('^')"
+                class="operateur"
+            >
+                ^
+            </button>
+
+
+            <button
+                onclick="appendValue('/')"
+                class="operateur"
+            >
+                ÷
+            </button>
+
+
+
+            <!-- ==========================
+                 LIGNE 3
+            =========================== -->
+
+            <button onclick="appendValue('7')">
+                7
+            </button>
+
+            <button onclick="appendValue('8')">
+                8
+            </button>
+
+            <button onclick="appendValue('9')">
+                9
+            </button>
+
+            <button
+                onclick="appendValue('*')"
+                class="operateur"
+            >
+                ×
+            </button>
+
+
+
+            <!-- ==========================
+                 LIGNE 4
+            =========================== -->
+
+            <button onclick="appendValue('4')">
+                4
+            </button>
+
+            <button onclick="appendValue('5')">
+                5
+            </button>
+
+            <button onclick="appendValue('6')">
+                6
+            </button>
+
+            <button
+                onclick="appendValue('-')"
+                class="operateur"
+            >
+                −
+            </button>
+
+
+
+            <!-- ==========================
+                 LIGNE 5
+            =========================== -->
+
+            <button onclick="appendValue('1')">
+                1
+            </button>
+
+            <button onclick="appendValue('2')">
+                2
+            </button>
+
+            <button onclick="appendValue('3')">
+                3
+            </button>
+
+            <button
+                onclick="appendValue('+')"
+                class="operateur"
+            >
+                +
+            </button>
+
+
+
+            <!-- ==========================
+                 LIGNE 6
+            =========================== -->
+
+            <button onclick="appendValue('0')">
+                0
+            </button>
+
+            <button onclick="appendValue('.')">
+                .
+            </button>
+
+
+            <!--
+                Le bouton = occupe les colonnes 3 et 4.
+                Le CSS devra lui donner :
+                grid-column: span 2;
+            -->
+
+            <button
+                onclick="calculate()"
+                class="resultat"
+            >
+                =
+            </button>
+
 
         </div>
 
     </div>
 
+
+
+    <!-- ======================================================
+         FENÊTRE FX
+    ======================================================= -->
+
+    <div
+        id="fxOverlay"
+        class="fx-overlay"
+        onclick="closeFxMenu(event)"
+    >
+
+
+        <!-- ==================================================
+             FENÊTRE INTERNE
+        =================================================== -->
+
+        <div
+            class="fx-window"
+            onclick="event.stopPropagation()"
+        >
+
+
+            <!-- ==============================================
+                 EN-TÊTE DE LA FENÊTRE FX
+            =============================================== -->
+
+            <div class="fx-header">
+
+
+                <h2 id="fxTitle">
+                    Fonctions
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="fx-close"
+                    onclick="closeFxMenu()"
+                    aria-label="Fermer"
+                >
+                    ×
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MENU DES FONCTIONS
+            ================================================== -->
+
+            <div
+                id="fxFunctionMenu"
+                class="fx-functions"
+            >
+
+
+                <!-- SOMME -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('SOMME')"
+                >
+                    <strong>SOMME</strong>
+
+                    <span>
+                        Additionner plusieurs valeurs
+                    </span>
+                </button>
+
+
+
+                <!-- MOYENNE -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('MOYENNE')"
+                >
+                    <strong>MOYENNE</strong>
+
+                    <span>
+                        Calculer la moyenne
+                    </span>
+                </button>
+
+
+
+                <!-- MIN -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('MIN')"
+                >
+                    <strong>MIN</strong>
+
+                    <span>
+                        Plus petite valeur
+                    </span>
+                </button>
+
+
+
+                <!-- MAX -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('MAX')"
+                >
+                    <strong>MAX</strong>
+
+                    <span>
+                        Plus grande valeur
+                    </span>
+                </button>
+
+
+
+                <!-- NB -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('NB')"
+                >
+                    <strong>NB</strong>
+
+                    <span>
+                        Compter les valeurs
+                    </span>
+                </button>
+
+
+
+                <!-- SI -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('SI')"
+                >
+                    <strong>SI</strong>
+
+                    <span>
+                        Tester une condition
+                    </span>
+                </button>
+
+
+
+                <!-- PRODUIT -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('PRODUIT')"
+                >
+                    <strong>PRODUIT</strong>
+
+                    <span>
+                        Multiplier plusieurs valeurs
+                    </span>
+                </button>
+
+
+
+                <!-- DIVISION -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('DIVISION')"
+                >
+                    <strong>DIVISION</strong>
+
+                    <span>
+                        Division complète
+                    </span>
+                </button>
+
+
+
+                <!-- QUOTIENT -->
+
+                <button
+                    type="button"
+                    onclick="selectFxFunction('QUOTIENT')"
+                >
+                    <strong>QUOTIENT</strong>
+
+                    <span>
+                        Partie entière d'une division
+                    </span>
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORMULAIRE DYNAMIQUE
+            ================================================== -->
+
+            <div
+                id="fxForm"
+                class="fx-form"
+                style="display: none;"
+            >
+
+
+                <!-- Nom de la fonction -->
+
+                <div
+                    id="fxFunctionName"
+                    class="fx-function-name"
+                >
+                    SOMME
+                </div>
+
+
+
+                <!-- Description -->
+
+                <div
+                    id="fxDescription"
+                    class="fx-description"
+                >
+                    Entrez les valeurs à additionner.
+                </div>
+
+
+
+                <!--
+                    Les champs d'arguments sont créés
+                    automatiquement par script.js.
+                -->
+
+                <div
+                    id="fxArguments"
+                    class="fx-arguments"
+                >
+                </div>
+
+
+
+                <!-- Résultat -->
+
+                <div
+                    id="fxFunctionResult"
+                    class="fx-function-result"
+                    style="display: none;"
+                >
+                </div>
+
+
+
+                <!-- ==========================================
+                     ACTIONS
+                =========================================== -->
+
+                <div class="fx-actions">
+
+
+                    <button
+                        type="button"
+                        class="fx-back"
+                        onclick="backToFxFunctions()"
+                    >
+                        ← Retour
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="fx-calculate"
+                        onclick="calculateFxFunction()"
+                    >
+                        Calculer
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ANNULER
+            ================================================== -->
+
+            <button
+                type="button"
+                class="fx-cancel"
+                onclick="closeFxMenu()"
+            >
+                ANNULER
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================================
+         JAVASCRIPT
+    ======================================================= -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
